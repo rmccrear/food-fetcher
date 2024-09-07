@@ -17,6 +17,7 @@ async function handleFetchFood(){
   } catch (error) {
     console.log("There was an error");
     alert("Error fetching data.");
+    console.log("I went to the store, I never made it back.");
     console.log(error);
     return;
   }
@@ -26,11 +27,14 @@ async function handleFetchFood(){
     data = await result.json();
     // proof of life for data
     console.log(data);
+    console.log("I went the store, and got the milk.");
   } else {
     if(result.status === 404) {
       alert(`Error: ${berryCode} not found`);
+      console.log("I went to the store, there was no milk.");
     } else {
       alert("Error: " + result.status);
+      console.log("I went to the store, but didn't get milk for some other reason.");
     }
     return; // return because there is no data
   }
