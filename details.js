@@ -10,8 +10,16 @@ async function handleFetchFood(){
   // step 1: fetch from server
   // let result = await fetch("https://world.openfoodfacts.org/api/v3/product/078742040370.json");
   // let result = await fetch("https://pokeapi.co/api/v2/item/1");
-  let result = await fetch(`https://pokeapi.co/api/v2/berry/${berryCode}`);
-  console.log(result);
+  let result;
+  try {
+    result = await fetch(`https://pokeapi.co/api/v2/berry/${berryCode}`);
+    console.log(result);
+  } catch (error) {
+    console.log("There was an error");
+    alert("Error fetching data.");
+    console.log(error);
+    return;
+  }
   let data;
   if(result.ok === true) {
     // step 2: read data as JSON.
