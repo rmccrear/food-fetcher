@@ -12,10 +12,20 @@ async function handleFetchFood(){
   // let result = await fetch("https://pokeapi.co/api/v2/item/1");
   let result = await fetch(`https://pokeapi.co/api/v2/berry/${berryCode}`);
   console.log(result);
-  // step 2: read data as JSON.
-  let data = await result.json();
-  // proof of life for data
-  console.log(data);
+  let data;
+  if(result.ok === true) {
+    // step 2: read data as JSON.
+    data = await result.json();
+    // proof of life for data
+    console.log(data);
+  } else {
+    if(result.status === 404) {
+      alert(`Error: ${berryCode} not found`);
+    } else {
+      alert("Error: " + result.status);
+    }
+    return; // return because there is no data
+  }
   let flavors = data.flavors;
 
   // set name of fetched berry
